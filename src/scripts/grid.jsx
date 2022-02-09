@@ -45,8 +45,10 @@ class Cell extends Component {
       })
       .reduce((partialSum, a) => partialSum + a, 0);
     console.log(neighbourSum);
-    if (neighbourSum === Math.max(mockGrid) + 1)
+    if (neighbourSum === Math.max(...[...mockGrid])) {
+      console.log("valid stone!");
       this.setState(() => (this.cellValue = neighbourSum));
+    }
     // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
   };
   render() {
