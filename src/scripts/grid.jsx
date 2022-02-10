@@ -45,7 +45,7 @@ class Cell extends Component {
       })
       .reduce((partialSum, a) => partialSum + a, 0);
     console.log(neighbourSum);
-    if (neighbourSum === Math.max(...[...mockGrid])) {
+    if (neighbourSum === Math.max(...mockGridMap.values()) + 1) {
       console.log("valid stone!");
       this.setState(() => (this.cellValue = neighbourSum));
     }
