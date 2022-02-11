@@ -43,13 +43,15 @@ class Cell extends Component {
     if (neighbourSum === Math.max(...gridData.hashMap.values()) + 1) {
       console.log("valid stone!");
       this.setState(() => {
+        gridData.set(neighbourSum, ...this.props.index);
         this.cellValue = neighbourSum;
-        gridData.set(this.cellValue, ...this.props.index);
+        this.props.redrawGrid();
       });
     }
     // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
   };
   render() {
+    console.log(this.cellValue);
     return (
       <div
         onClick={() => this.cellClickEvent(this.props.index, this.props.value)}
@@ -61,13 +63,18 @@ class Cell extends Component {
 }
 
 export default class Grid extends Component {
+  redrawGrid = () => {
+    console.log("re-render!");
+    this.setState();
+  };
   render() {
+    console.log("rendering!");
     return (
       <div>
         {gridData.shapedIteration().map((row, y) => (
           <div className="rowStyle">
             {row.map((value, x) => (
-              <Cell value={value} index={[x, y]} />
+              <Cell redrawGrid={this.redrawGrid} value={value} index={[x, y]} />
             ))}
           </div>
         ))}
