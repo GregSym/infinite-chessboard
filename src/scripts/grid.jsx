@@ -31,7 +31,6 @@ const gridData = new GridStruct(mockGridMap);
 console.log(mockGridMap);
 
 class Cell extends Component {
-  cellValue = this.props.value;
   cellClickEvent = (index, value) => {
     if (value === 1) return;
     var neighbourSum = adjacency
@@ -44,7 +43,7 @@ class Cell extends Component {
       console.log("valid stone!");
       this.setState(() => {
         gridData.set(neighbourSum, ...this.props.index);
-        this.cellValue = neighbourSum;
+        // this.cellValue = neighbourSum;
         this.props.redrawGrid();
       });
     }
@@ -56,7 +55,7 @@ class Cell extends Component {
       <div
         onClick={() => this.cellClickEvent(this.props.index, this.props.value)}
       >
-        <h1>Underlying value: {this.cellValue}</h1>
+        <h1>Underlying value: {this.props.value}</h1>
       </div>
     );
   }
@@ -66,19 +65,29 @@ export default class Grid extends Component {
   redrawGrid = () => {
     console.log("re-render!");
     this.setState();
+    // gridData.shapedIteration();
+    this.render();
   };
   render() {
     console.log("rendering!");
     return (
-      <div>
-        {gridData.shapedIteration().map((row, y) => (
-          <div className="rowStyle">
-            {row.map((value, x) => (
-              <Cell redrawGrid={this.redrawGrid} value={value} index={[x, y]} />
-            ))}
-          </div>
-        ))}
-      </div>
+      <>
+        <div>
+          {gridData.shapedIteration().map((col, x) => (
+            <div key={x} className="rowStyle">
+              {col.map((value, y) => (
+                <Cell
+                  key={y}
+                  redrawGrid={this.redrawGrid}
+                  value={value}
+                  index={[x, y]}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+        <div>{Math.max(...gridData.hashMap.values())}</div>
+      </>
     );
   }
 }
