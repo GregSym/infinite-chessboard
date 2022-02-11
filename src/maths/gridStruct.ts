@@ -26,7 +26,7 @@ export class GridStruct {
     var maxY = Math.max(...this.keys().map((index) => index[1]));
     var minX = Math.min(...this.keys().map((index) => index[0]));
     var minY = Math.min(...this.keys().map((index) => index[1]));
-    var nDArray = [];
+    var nDArray: number[][] = [];
     for (var y = minY - 1; y < maxY + 1; y++) {
       nDArray.push([]);
       for (var x = minX - 1; x < maxX + 1; x++) {
