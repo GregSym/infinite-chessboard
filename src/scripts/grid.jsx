@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { rowStyle } from "../styles/grid.css";
+import { GridStruct } from "../maths/gridStruct.ts";
+import "../styles/grid.css";
 
 const adjacency = [
   [-1, -1],
@@ -25,6 +26,8 @@ mockGrid.map((row, y) =>
   row.map((value, x) => mockGridMap.set(x.toString() + y.toString(), value))
 );
 
+const gridData = new GridStruct(mockGridMap);
+
 console.log(mockGridMap);
 
 class Cell extends Component {
@@ -33,21 +36,16 @@ class Cell extends Component {
     if (value === 1) return;
     var neighbourSum = adjacency
       .map((neighbour) => {
-        return mockGridMap.has(
-          (index[0] + neighbour[0]).toString() +
-            (index[1] + neighbour[1]).toString()
-        )
-          ? mockGridMap.get(
-              (index[0] + neighbour[0]).toString() +
-                (index[1] + neighbour[1]).toString()
-            )
-          : 0;
+        return gridData.get(index[0] + neighbour[0], index[1] + neighbour[1]);
       })
       .reduce((partialSum, a) => partialSum + a, 0);
     console.log(neighbourSum);
-    if (neighbourSum === Math.max(...mockGridMap.values()) + 1) {
+    if (neighbourSum === Math.max(...gridData.hashMap.values()) + 1) {
       console.log("valid stone!");
-      this.setState(() => (this.cellValue = neighbourSum));
+      this.setState(() => {
+        this.cellValue = neighbourSum;
+        gridData.set(this.cellValue, ...this.props.index);
+      });
     }
     // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
   };
@@ -66,7 +64,7 @@ export default class Grid extends Component {
   render() {
     return (
       <div>
-        {mockGrid.map((row, y) => (
+        {gridData.shapedIteration().map((row, y) => (
           <div className="rowStyle">
             {row.map((value, x) => (
               <Cell value={value} index={[x, y]} />
