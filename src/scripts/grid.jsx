@@ -54,7 +54,7 @@ class Cell extends Component {
   render() {
     console.log(this.cellValue);
     return (
-      <div
+      <div className="cellStyle"
         onClick={() => this.cellClickEvent(this.props.index, this.props.grid)}
       >
         <h1>
