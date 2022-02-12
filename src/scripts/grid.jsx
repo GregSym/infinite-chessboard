@@ -35,7 +35,10 @@ class Cell extends Component {
     if (grid.get(...index) > 0) return;
     var neighbourSum = adjacency
       .map((neighbour) => {
-        return gridData.get(index[0] + neighbour[0], index[1] + neighbour[1]);
+        return this.props.grid.get(
+          index[0] + neighbour[0],
+          index[1] + neighbour[1]
+        );
       })
       .reduce((partialSum, a) => partialSum + a, 0);
     console.log(neighbourSum);
@@ -54,7 +57,10 @@ class Cell extends Component {
       <div
         onClick={() => this.cellClickEvent(this.props.index, this.props.grid)}
       >
-        <h1>Underlying value: {this.props.grid.get(...this.props.index)}</h1>
+        <h1>
+          {"    "} {this.props.index}:{" "}
+          {this.props.grid.get(...this.props.index)} {"    "}
+        </h1>
       </div>
     );
   }
@@ -79,7 +85,7 @@ export default function Grid() {
           </div>
         ))}
       </div>
-      <div>{Math.max(...gridData.hashMap.values())}</div>
+      <div>{Math.max(..._grid.hashMap.values())}</div>
     </>
   );
 }
