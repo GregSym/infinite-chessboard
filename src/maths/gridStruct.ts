@@ -50,6 +50,7 @@ export class GridStruct {
 
   copy(): GridStruct {
     var newHashMap: Map<string, number> = new Map();
+    // do shallow copy
     this.hashMap.forEach((value, key, _) => newHashMap.set(key, value));
     return new GridStruct(newHashMap);
   }
