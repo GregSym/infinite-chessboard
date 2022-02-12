@@ -39,14 +39,14 @@ class Cell extends Component {
       })
       .reduce((partialSum, a) => partialSum + a, 0);
     console.log(neighbourSum);
-    if (neighbourSum === Math.max(...gridData.hashMap.values()) + 1) {
+    if (neighbourSum === Math.max(...this.props.grid.hashMap.values()) + 1) {
+      // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
       console.log("valid stone!");
       this.props.grid.set(neighbourSum, ...this.props.index);
       // this.cellValue = neighbourSum;
       this.props.redrawGrid(this.props.grid.copy());
-      this.setState(() => {});
+      // this.setState(() => {});
     }
-    // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
   };
   render() {
     console.log(this.cellValue);
