@@ -58,9 +58,9 @@ class Cell extends Component {
         onClick={() => this.cellClickEvent(this.props.index, this.props.grid)}
       >
         <h1>
-          {"    "} {this.props.index}:{" "}
-          {this.props.grid.get(...this.props.index)} {"    "}
+          {this.props.grid.get(...this.props.index)}
         </h1>
+        <p>{this.props.index}</p>
       </div>
     );
   }
