@@ -68,7 +68,7 @@ export default function Grid() {
       <div>
         {shapedGrid.map((col, x) => (
           <div key={x} className="rowStyle">
-            {col.map((value, y) => (
+            {col.map((_, y) => (
               <Cell
                 key={y}
                 redrawGrid={(newGrid) => setGrid(newGrid)}
