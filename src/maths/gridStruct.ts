@@ -10,9 +10,9 @@ export class GridStruct {
   }
 
   keys: () => number[][] = () =>
-    [...this.hashMap.keys()].map((indecesString) => [
-      Number(indecesString[0]),
-      Number(indecesString[1]),
+    [...this.hashMap.keys()].map(([a, b, c, d]) => [
+      Number(a !== "-" ? a : a + b),
+      Number(a !== "-" && b !== "-" ? b : c !== "-" ? c : d),
     ]);
 
   get(x: number, y: number): number {
@@ -26,29 +26,39 @@ export class GridStruct {
     console.log(this.hashMap);
   }
 
-  shapedIteration(): number[][] {
+  shapedIteration(): (number | number[][])[] {
     // boundaries
     var maxX = Math.max(...this.keys().map(([x, y]) => x));
     var maxY = Math.max(...this.keys().map(([x, y]) => y));
     var minX = Math.min(...this.keys().map(([x, y]) => x));
     var minY = Math.min(...this.keys().map(([x, y]) => y));
+    console.log(...this.keys());
+    console.log(maxX, maxY, minX, minY);
 
     // store indeces
     var nDArrayY: number[] = [];
     var nDArrayX: number[] = [];
     // create indeces
-    for (var y = minY - 1; y < maxY + 1; y++) {
-      console.log(y)
+    for (var y = minY - 2; y < maxY + 2; y++) {
       nDArrayY.push(y);
     }
-    for (var x = minX - 1; x < maxX + 1; x++) {
+    for (var x = minX - 2; x < maxX + 2; x++) {
       nDArrayX.push(x);
     }
     console.log(
-      nDArrayX.map((x, pos) => nDArrayY.map((y, posy) => this.get(x, y)))
+      nDArrayX.map((x, pos) =>
+        nDArrayY.map((y, posy) => {
+          console.log(this.get(x, y));
+          return this.get(x, y);
+        })
+      )
     );
     // return shaped array
-    return nDArrayX.map((x) => nDArrayY.map((y) => this.get(x, y)));
+    return [
+      nDArrayX.map((x) => nDArrayY.map((y) => this.get(x, y))),
+      minX,
+      minY,
+    ];
   }
 
   copy(): GridStruct {

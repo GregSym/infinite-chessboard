@@ -41,10 +41,8 @@ class Cell extends Component {
         );
       })
       .reduce((partialSum, a) => partialSum + a, 0);
-    console.log(neighbourSum);
     if (neighbourSum === Math.max(...this.props.grid.hashMap.values()) + 1) {
       // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
-      console.log("valid stone!");
       this.props.grid.set(neighbourSum, ...this.props.index);
       this.props.redrawGrid(this.props.grid.copy());
     }
@@ -64,18 +62,18 @@ class Cell extends Component {
 
 export default function Grid() {
   const [_grid, setGrid] = useState(gridData);
-  console.log("rendering!");
+  const [shapedGrid, xOffset, yOffset] = _grid.shapedIteration();
   return (
     <>
       <div>
-        {_grid.shapedIteration().map((col, x) => (
+        {shapedGrid.map((col, x) => (
           <div key={x} className="rowStyle">
             {col.map((value, y) => (
               <Cell
                 key={y}
                 redrawGrid={(newGrid) => setGrid(newGrid)}
                 grid={_grid}
-                index={[x, y]}
+                index={[x+xOffset-2, y+yOffset-2]}
               />
             ))}
           </div>
