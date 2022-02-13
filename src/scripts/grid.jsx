@@ -76,7 +76,7 @@ export default function Grid() {
                 key={y}
                 redrawGrid={(newGrid) => setGrid(newGrid)}
                 grid={_grid}
-                index={[x + xOffset - 1, y + yOffset - 1]}
+                index={[x + xOffset, y+yOffset]}
               />
             ))}
           </div>

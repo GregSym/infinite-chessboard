@@ -12,7 +12,15 @@ export class GridStruct {
   keys: () => number[][] = () =>
     [...this.hashMap.keys()].map(([a, b, c, d]) => [
       Number(a !== "-" ? a : a + b),
-      Number(a !== "-" && b !== "-" ? b : c !== "-" ? c : d),
+      Number(
+        a !== "-" && b !== "-"
+          ? b
+          : b === "-" && c !== "-"
+          ? b + c
+          : c !== "-"
+          ? c
+          : c + d
+      ),
     ]);
 
   get(x: number, y: number): number {
@@ -38,10 +46,10 @@ export class GridStruct {
     var nDArrayY: number[] = [];
     var nDArrayX: number[] = [];
     // create indeces
-    for (var y = minY - 3; y < maxY + 3; y++) {
+    for (var y = minY - 1; y < maxY + 2; y++) {
       nDArrayY.push(y);
     }
-    for (var x = minX - 3; x < maxX + 3; x++) {
+    for (var x = minX - 1; x < maxX + 2; x++) {
       nDArrayX.push(x);
     }
     console.log(
@@ -52,11 +60,12 @@ export class GridStruct {
         })
       )
     );
+    console.log(minY);
     // return shaped array
     return [
       nDArrayX.map((x) => nDArrayY.map((y) => this.get(x, y))),
-      minX-1,
-      minY-1,
+      minX - 1,
+      minY - 1,
     ];
   }
 
