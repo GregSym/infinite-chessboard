@@ -54,14 +54,17 @@ class Cell extends Component {
   render() {
     console.log(this.cellValue);
     return (
+      <div className="cell-animator">
+
       <div className="cellStyle"
         onClick={() => this.cellClickEvent(this.props.index, this.props.grid)}
-      >
+        >
         <h1>
           {this.props.grid.get(...this.props.index)}
         </h1>
         <p>{this.props.index}</p>
       </div>
+        </div>
     );
   }
 }
