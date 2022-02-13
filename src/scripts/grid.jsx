@@ -46,25 +46,18 @@ class Cell extends Component {
       // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
       console.log("valid stone!");
       this.props.grid.set(neighbourSum, ...this.props.index);
-      // this.cellValue = neighbourSum;
       this.props.redrawGrid(this.props.grid.copy());
-      // this.setState(() => {});
     }
   };
   render() {
-    console.log(this.cellValue);
     return (
-      <div className="cell-animator">
-
-      <div className="cellStyle"
+      <div
+        className="cellStyle"
         onClick={() => this.cellClickEvent(this.props.index, this.props.grid)}
-        >
-        <h1>
-          {this.props.grid.get(...this.props.index)}
-        </h1>
+      >
+        <h1>{this.props.grid.get(...this.props.index)}</h1>
         <p>{this.props.index}</p>
       </div>
-        </div>
     );
   }
 }
