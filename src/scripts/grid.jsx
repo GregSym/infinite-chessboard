@@ -51,6 +51,9 @@ class Cell extends Component {
     return (
       <div
         className="cellStyle"
+        color={
+          this.props.grid.get(...this.props.index) > 0 ? "white" : "#c4c4c4"
+        }
         onClick={() => this.cellClickEvent(this.props.index, this.props.grid)}
       >
         <h1>{this.props.grid.get(...this.props.index)}</h1>
@@ -73,7 +76,7 @@ export default function Grid() {
                 key={y}
                 redrawGrid={(newGrid) => setGrid(newGrid)}
                 grid={_grid}
-                index={[x+xOffset-2, y+yOffset-2]}
+                index={[x + xOffset - 1, y + yOffset - 1]}
               />
             ))}
           </div>

@@ -32,17 +32,16 @@ export class GridStruct {
     var maxY = Math.max(...this.keys().map(([x, y]) => y));
     var minX = Math.min(...this.keys().map(([x, y]) => x));
     var minY = Math.min(...this.keys().map(([x, y]) => y));
-    console.log(...this.keys());
     console.log(maxX, maxY, minX, minY);
 
     // store indeces
     var nDArrayY: number[] = [];
     var nDArrayX: number[] = [];
     // create indeces
-    for (var y = minY - 2; y < maxY + 2; y++) {
+    for (var y = minY - 3; y < maxY + 3; y++) {
       nDArrayY.push(y);
     }
-    for (var x = minX - 2; x < maxX + 2; x++) {
+    for (var x = minX - 3; x < maxX + 3; x++) {
       nDArrayX.push(x);
     }
     console.log(
@@ -56,8 +55,8 @@ export class GridStruct {
     // return shaped array
     return [
       nDArrayX.map((x) => nDArrayY.map((y) => this.get(x, y))),
-      minX,
-      minY,
+      minX-1,
+      minY-1,
     ];
   }
 
