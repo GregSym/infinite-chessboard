@@ -1,3 +1,14 @@
+export const adjacency = [
+  [-1, -1],
+  [-1, 0],
+  [-1, 1],
+  [0, -1],
+  [0, 1],
+  [1, -1],
+  [1, 0],
+  [1, 1],
+];
+
 /// Default dict styled wrapper for js hashmap type
 export class GridStruct {
   hashMap: Map<string, number> = new Map();
@@ -33,6 +44,19 @@ export class GridStruct {
     this.hashMap.set(x.toString() + y.toString(), value);
     console.log(this.hashMap);
   }
+
+  sumAtIndex(x: number, y: number): number {
+    return adjacency
+      .map((neighbour) => {
+        return this.get(
+          x + neighbour[0],
+          y + neighbour[1]
+        );
+      })
+      .reduce((partialSum, a) => partialSum + a, 0);
+  }
+
+  maxValue: () => number = () => Math.max(...this.hashMap.values())
 
   shapedIteration(): (number | number[][])[] {
     // boundaries

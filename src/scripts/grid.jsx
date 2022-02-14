@@ -2,17 +2,6 @@ import { Component, useState } from "react";
 import { GridStruct } from "../maths/gridStruct.ts";
 import "../styles/grid.css";
 
-const adjacency = [
-  [-1, -1],
-  [-1, 0],
-  [-1, 1],
-  [0, -1],
-  [0, 1],
-  [1, -1],
-  [1, 0],
-  [1, 1],
-];
-
 const mockGrid = [
   [1, 0, 0],
   [0, 0, 0],
@@ -33,15 +22,8 @@ console.log(mockGridMap);
 class Cell extends Component {
   cellClickEvent = (index, grid) => {
     if (grid.get(...index) > 0) return;
-    var neighbourSum = adjacency
-      .map((neighbour) => {
-        return this.props.grid.get(
-          index[0] + neighbour[0],
-          index[1] + neighbour[1]
-        );
-      })
-      .reduce((partialSum, a) => partialSum + a, 0);
-    if (neighbourSum === Math.max(...this.props.grid.hashMap.values()) + 1) {
+    var neighbourSum = grid.sumAtIndex(...index);
+    if (neighbourSum === grid.maxValue() + 1) {
       // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
       this.props.grid.set(neighbourSum, ...this.props.index);
       this.props.redrawGrid(this.props.grid.copy());
