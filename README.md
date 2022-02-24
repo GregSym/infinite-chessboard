@@ -1,5 +1,7 @@
 # Infinite Chessboard Game
 
+![test_suite](https://github.com/GregSym/infinite-chessboard/actions/workflows/node_ci_tests.yml/badge.svg)
+
 ### An interactive implementation of the game detailed in:
 
 https://youtu.be/m4Uth-EaTZ8
