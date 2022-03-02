@@ -46,7 +46,7 @@ class Cell extends Component {
 }
 
 export default function Grid() {
-  const [_grid, setGrid] = useState(gridData);
+  const [_grid, setGrid] = useState(gridData.copy());
   const [shapedGrid, xOffset, yOffset] = _grid.shapedIteration();
   return (
     <>
@@ -64,6 +64,7 @@ export default function Grid() {
           </div>
         ))}
       </div>
+      <button onClick={() => setGrid(gridData.copy())}>Reset</button>
       <div>{Math.max(..._grid.hashMap.values())}</div>
     </>
   );
