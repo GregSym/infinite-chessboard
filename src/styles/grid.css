@@ -3,7 +3,7 @@
   height: 47px;
   padding-left: 25%;
 
-  font-family: "Yaldevi Colombo";
+  font-family: "Yaldevi";
   font-style: normal;
   font-weight: 700;
   font-size: 34px;
@@ -18,8 +18,9 @@
 .gridStyle {
   display: grid;
   /* grid-template-columns: 100% 1fr; */
-  grid-template-rows: 80% 1fr;
-  padding-left: 10%;
+  grid-template-rows: 90% 1fr;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .rowStyle {
@@ -50,6 +51,8 @@
 .restartStyle {
   grid-area: auto;
   display: inline;
+  margin-left: auto;
+  margin-right: auto;
   width: 40%;
   padding-left: 1%;
 }

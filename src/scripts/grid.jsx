@@ -50,10 +50,11 @@ class Cell extends Component {
 export default function Grid() {
   const [_grid, setGrid] = useState(gridData.copy());
   const [shapedGrid, xOffset, yOffset] = _grid.shapedIteration();
+  const cellWidth = 102;
   return (
     <>
       <h1 className="headerStyle">Infinite Chessboard</h1>
-      <div className="gridStyle">
+      <div className="gridStyle" style={{width: cellWidth * shapedGrid.length + 60}}>
         <div>
           {shapedGrid.map((col, x) => (
             <span key={x} className="rowStyle">
