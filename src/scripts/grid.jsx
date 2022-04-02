@@ -49,7 +49,7 @@ export default function Grid() {
   const [_grid, setGrid] = useState(gridData.copy());
   const [shapedGrid, xOffset, yOffset] = _grid.shapedIteration();
   return (
-    <>
+    <div className="gridStyle">
       <div>
         {shapedGrid.map((col, x) => (
           <span key={x} className="rowStyle">
@@ -64,8 +64,9 @@ export default function Grid() {
           </span>
         ))}
       </div>
+      <br />
       <button className="restartStyle" onClick={() => setGrid(gridData.copy())}>Reset</button>
-      <div>{Math.max(..._grid.hashMap.values())}</div>
-    </>
+      <div>Current maximum stone: {Math.max(..._grid.hashMap.values())}</div>
+    </div>
   );
 }

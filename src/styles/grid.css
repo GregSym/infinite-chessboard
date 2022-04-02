@@ -1,3 +1,9 @@
+.gridStyle {
+  display: grid;
+  /* grid-template-columns: 100% 1fr; */
+  grid-template-rows: 90% 1fr;
+}
+
 .rowStyle {
   display: inline;
   float: left;
@@ -14,20 +20,18 @@
   background: #c4c4c4;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 9px;
-  transition: transform .5s;
+  transition: transform 0.5s;
   cursor: pointer;
   user-select: none;
 }
 
-
 .cellStyle:hover {
-    transform: scale(105%);
+  transform: scale(105%);
 }
 
 .restartStyle {
-  position: absolute;
+  grid-area: auto;
   display: inline;
-  left: 1%;
-  bottom: 1%;
+  width: 40%;
   padding-left: 1%;
 }
