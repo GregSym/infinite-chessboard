@@ -1,7 +1,25 @@
+.headerStyle {
+  width: 50%;
+  height: 47px;
+  padding-left: 25%;
+
+  font-family: "Yaldevi Colombo";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 45px;
+  letter-spacing: -0.02em;
+
+  text-align: center;
+
+  color: #742bad;
+}
+
 .gridStyle {
   display: grid;
   /* grid-template-columns: 100% 1fr; */
-  grid-template-rows: 90% 1fr;
+  grid-template-rows: 80% 1fr;
+  padding-left: 10%;
 }
 
 .rowStyle {

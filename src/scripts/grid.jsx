@@ -38,7 +38,9 @@ class Cell extends Component {
         }
         onClick={() => this.cellClickEvent(this.props.index, this.props.grid)}
       >
-        <h1 data-testid={this.props.index.toString()}>{this.props.grid.get(...this.props.index)}</h1>
+        <h1 data-testid={this.props.index.toString()}>
+          {this.props.grid.get(...this.props.index)}
+        </h1>
         <p>{this.props.index}</p>
       </div>
     );
@@ -49,24 +51,34 @@ export default function Grid() {
   const [_grid, setGrid] = useState(gridData.copy());
   const [shapedGrid, xOffset, yOffset] = _grid.shapedIteration();
   return (
-    <div className="gridStyle">
-      <div>
-        {shapedGrid.map((col, x) => (
-          <span key={x} className="rowStyle">
-            {col.map((_, y) => (
-              <Cell
-                key={y}
-                redrawGrid={(newGrid) => setGrid(newGrid)}
-                grid={_grid}
-                index={[x + xOffset, y+yOffset]}
-              />
-            ))}
-          </span>
-        ))}
+    <>
+      <h1 className="headerStyle">Infinite Chessboard</h1>
+      <div className="gridStyle">
+        <div>
+          {shapedGrid.map((col, x) => (
+            <span key={x} className="rowStyle">
+              {col.map((_, y) => (
+                <Cell
+                  key={y}
+                  redrawGrid={(newGrid) => setGrid(newGrid)}
+                  grid={_grid}
+                  index={[x + xOffset, y + yOffset]}
+                />
+              ))}
+            </span>
+          ))}
+        </div>
+        <br />
+        <button
+          className="restartStyle"
+          onClick={() => setGrid(gridData.copy())}
+        >
+          Reset
+        </button>
+        <div className="restartStyle">
+          Current maximum stone: {Math.max(..._grid.hashMap.values())}
+        </div>
       </div>
-      <br />
-      <button className="restartStyle" onClick={() => setGrid(gridData.copy())}>Reset</button>
-      <div className="restartStyle">Current maximum stone: {Math.max(..._grid.hashMap.values())}</div>
-    </div>
+    </>
   );
 }
