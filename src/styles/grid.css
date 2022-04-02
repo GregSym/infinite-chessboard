@@ -23,3 +23,11 @@
 .cellStyle:hover {
     transform: scale(105%);
 }
+
+.restartStyle {
+  position: absolute;
+  display: inline;
+  left: 1%;
+  bottom: 1%;
+  padding-left: 1%;
+}

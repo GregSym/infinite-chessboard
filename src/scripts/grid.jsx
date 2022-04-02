@@ -52,7 +52,7 @@ export default function Grid() {
     <>
       <div>
         {shapedGrid.map((col, x) => (
-          <div key={x} className="rowStyle">
+          <span key={x} className="rowStyle">
             {col.map((_, y) => (
               <Cell
                 key={y}
@@ -61,10 +61,10 @@ export default function Grid() {
                 index={[x + xOffset, y+yOffset]}
               />
             ))}
-          </div>
+          </span>
         ))}
       </div>
-      <button onClick={() => setGrid(gridData.copy())}>Reset</button>
+      <button className="restartStyle" onClick={() => setGrid(gridData.copy())}>Reset</button>
       <div>{Math.max(..._grid.hashMap.values())}</div>
     </>
   );
