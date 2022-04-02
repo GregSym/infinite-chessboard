@@ -66,7 +66,7 @@ export default function Grid() {
       </div>
       <br />
       <button className="restartStyle" onClick={() => setGrid(gridData.copy())}>Reset</button>
-      <div>Current maximum stone: {Math.max(..._grid.hashMap.values())}</div>
+      <div className="restartStyle">Current maximum stone: {Math.max(..._grid.hashMap.values())}</div>
     </div>
   );
 }
