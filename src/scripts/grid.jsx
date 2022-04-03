@@ -20,7 +20,6 @@ const gridData = new GridStruct(mockGridMap);
 console.log(mockGridMap);
 
 class Cell extends Component {
-  backgroudColour = "#c4c4c4";
   cellClickEvent = (index, grid) => {
     if (grid.get(...index) > 0) return;
     var neighbourSum = grid.sumAtIndex(...index);
@@ -28,7 +27,6 @@ class Cell extends Component {
       // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
       this.props.grid.set(neighbourSum, ...this.props.index);
       this.props.redrawGrid(this.props.grid.copy());
-      this.backgroudColour = "white";
     }
   };
   render() {
