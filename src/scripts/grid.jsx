@@ -20,6 +20,7 @@ const gridData = new GridStruct(mockGridMap);
 console.log(mockGridMap);
 
 class Cell extends Component {
+  backgroudColour = "#c4c4c4";
   cellClickEvent = (index, grid) => {
     if (grid.get(...index) > 0) return;
     var neighbourSum = grid.sumAtIndex(...index);
@@ -27,15 +28,20 @@ class Cell extends Component {
       // thanks Florian Margaine (answerer), mikemaccana asker, https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
       this.props.grid.set(neighbourSum, ...this.props.index);
       this.props.redrawGrid(this.props.grid.copy());
+      this.backgroudColour = "white";
     }
   };
   render() {
     return (
       <div
         className="cellStyle"
-        color={
-          this.props.grid.get(...this.props.index) > 0 ? "white" : "#c4c4c4"
-        }
+        style={{
+          background:
+            this.props.grid.get(...this.props.index) ===
+            this.props.grid.maxValue()
+              ? "white"
+              : "#c4c4c4",
+        }}
         onClick={() => this.cellClickEvent(this.props.index, this.props.grid)}
       >
         <h1 data-testid={this.props.index.toString()}>
@@ -54,7 +60,10 @@ export default function Grid() {
   return (
     <>
       <h1 className="headerStyle">Infinite Chessboard</h1>
-      <div className="gridStyle" style={{width: cellWidth * shapedGrid.length + 60}}>
+      <div
+        className="gridStyle"
+        style={{ width: cellWidth * shapedGrid.length + 60 }}
+      >
         <div>
           {shapedGrid.map((col, x) => (
             <span key={x} className="rowStyle">
