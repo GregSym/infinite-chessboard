@@ -60,7 +60,9 @@ export default function Grid() {
       <h1 className="headerStyle">Infinite Chessboard</h1>
       <div
         className="gridStyle"
-        style={{ width: cellWidth * shapedGrid.length + 60 }}
+        style={{
+          width: cellWidth * shapedGrid.length + 60,
+        }}
       >
         <div>
           {shapedGrid.map((col, x) => (
