@@ -49,10 +49,10 @@
 }
 
 .restartStyle {
-  grid-area: auto;
   display: inline;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
-  padding-left: 1%;
+  width: 80%;
+  max-width: 500px;
+  /* padding-left: 1%; */
 }
