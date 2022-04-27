@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/infinite-chessboard/static/css/main.4fdaae10.css",
+    "main.js": "/infinite-chessboard/static/js/main.050b09ff.js",
+    "static/js/787.0e60c92a.chunk.js": "/infinite-chessboard/static/js/787.0e60c92a.chunk.js",
+    "index.html": "/infinite-chessboard/index.html",
+    "main.4fdaae10.css.map": "/infinite-chessboard/static/css/main.4fdaae10.css.map",
+    "main.050b09ff.js.map": "/infinite-chessboard/static/js/main.050b09ff.js.map",
+    "787.0e60c92a.chunk.js.map": "/infinite-chessboard/static/js/787.0e60c92a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4fdaae10.css",
+    "static/js/main.050b09ff.js"
+  ]
+}
